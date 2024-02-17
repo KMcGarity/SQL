@@ -1,4 +1,4 @@
-#For this project I used the table below to determine the top companies based on average employee tenure, days of paid time off, and availability of healthcare benefits.
+#For this project I used SQL to query the Fortune 500 companies database to determine the top companies based on average employee tenure, days of paid time off, and availability of healthcare benefits.
 
 CREATE TABLE fortune_companies (
     company_id INTEGER PRIMARY KEY,
