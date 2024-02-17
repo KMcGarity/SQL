@@ -28,17 +28,17 @@ VALUES
 
 #For this project I used SQL to query the Superstore database to find out more information about the items sold at the store.
 
-#Use a SELECT statement to order the items by price.
+#SELECT statement to order the items by price.
 SELECT *
 FROM superstore
 ORDER BY price;
 
-#Show the maximum price at the store.
+#The maximum price of any item at the store.
 SELECT 
 	MAX(price)
 FROM superstore;
 
-#Show the average price of Kitchen Supplies at the store. 
+#The average price of Kitchen Supplies at the store. 
 SELECT
 	AVG(price),
     category
@@ -46,7 +46,7 @@ FROM superstore
 WHERE 
 	category = "Kitchen Supplies";
   
-#Show the average rating by item category at the store and order by the highest average rating.  
+#The average rating by item category at the store and ordered by the highest average rating.  
 SELECT 
 	ROUND(AVG(average_rating),2) AS Avg_CategoryRating,
     category
