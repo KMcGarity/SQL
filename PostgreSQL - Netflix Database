@@ -59,7 +59,7 @@ VALUES
     ;
 
 
-#Queries to familiarize myself with the columns in the table.
+#1. Queries to familiarize myself with the columns in the table.
 SELECT *
 FROM netflix_titles_info
 LIMIT 5;
@@ -68,30 +68,30 @@ SELECT *
 FROM netflix_people
 LIMIT 5;
 
-#Joining the tables with the show_id column.
+#2. Joining the tables with the show_id column.
 SELECT *
 FROM "netflix_titles_info" NT
 JOIN "netflix_people" NP
 ON NT.show_id=NP.show_id;
 
-#Counting the # of movie titles in the dataset.
+#3. Counting the # of movie titles in the dataset.
 SELECT
 	COUNT(title)
 FROM "netflix_titles_info"
 WHERE type='Movie';
 
-#Viewing the most recent tv shows & movies added to the dataset.
+#4. Viewing the most recent tv shows & movies added to the dataset.
 SELECT 
 	MAX(DATE(date_added))
 FROM "netflix_titles_info";
 
-#Organizing the database by title in alphabetical order.
+#5. Organizing the database by title in alphabetical order.
 SELECT
 	title
 FROM "netflix_titles_info"
 ORDER BY title asc;
 
-#Finding the director of The Starling
+#6. Finding the director of The Starling
 SELECT
 	NP.director
 FROM "netflix_titles_info" NT
@@ -99,7 +99,7 @@ JOIN "netflix_people" NP
 ON NT.show_id=NP.show_id
 WHERE NT.title='The Starling';
 
-#Finding the release year of the oldest movie in the dataset.
+#7. Finding the release year of the oldest movie in the dataset.
 SELECT
 	MIN(release_year)
 FROM "netflix_titles_info"
