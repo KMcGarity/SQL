@@ -1,0 +1,71 @@
+#SQL Queries from a monthly sales database to analyze statistics about customers, products, and orders.
+
+#1.Queries to view the columns in the customers and sales tables.
+SELECT *
+FROM BIT_DB.customers;
+
+SELECT *
+FROM BIT_DB.JanSales;
+
+
+#2.Query to count the total number of sales placed in January.
+SELECT
+    COUNT(orderID)
+FROM BIT_DB.JanSales
+WHERE length(orderID) = 6 AND orderID <> 'Order ID';
+
+
+#3.Query to count the total number of iPhones sold in January.
+SELECT
+    COUNT(orderID)
+FROM BIT_DB.JanSales
+WHERE length(orderID) = 6 AND orderID <> 'Order ID' AND Product='iPhone';
+
+
+#4.List of unique account numbers for all orders placed in February.
+SELECT
+    DISTINCT customers.acctnum
+FROM BIT_DB.customers
+LEFT JOIN BIT_DB.FebSales
+ON customers.order_id=FebSales.orderID
+WHERE length(orderID) = 6 AND orderID <> 'Order ID';
+
+
+#5.Price of the cheapest product sold in January.
+SELECT
+    Product,
+    MIN(price)
+FROM BIT_DB.JanSales
+GROUP BY Product
+ORDER BY price
+LIMIT 1;
+
+
+#6.Total Revenue of each product sold in January.BIT_DB
+SELECT
+    Product,
+    ROUND(SUM(Quantity)*Price,2) AS Revenue
+FROM BIT_DB.JanSales
+GROUP BY Product
+ORDER By Revenue desc;
+
+
+#7.List of quantity and total revenue of each product sold in February at 548 Lincoln St, Seattle, WA 98101.
+SELECT
+    Product,
+    SUM(Quantity),
+    ROUND(SUM(Quantity)*Price,2) AS Revenue
+FROM BIT_DB.FebSales
+WHERE location = "548 Lincoln St, Seattle, WA 98101"
+GROUP BY Product
+ORDER BY Revenue desc;
+
+
+#8.Customers who purchased more than 2 products at a time in February and their average spend.
+SELECT
+    COUNT(DISTINCT customers.acctnum) AS Total_Customers,
+    ROUND(AVG(Quantity*Price),2) AS Average_Revenue
+FROM BIT_DB.customers
+OUTER JOIN BIT_DB.FebSales
+ON customers.order_id=FebSales.orderID
+WHERE length(orderID) = 6 AND orderID <> 'Order ID' AND Quantity > 2;
