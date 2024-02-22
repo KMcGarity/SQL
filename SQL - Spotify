@@ -22,7 +22,7 @@ duration_ms integer NOT NULL,
 time_signature integer NOT NULL 
 )
 
-#Top 5 most popular artists with their average duration, danceability, and energy.
+#1. Top 5 most popular artists with their average duration, danceability, and energy.
 SELECT
     artist_name,
     avg(popularity),
@@ -35,7 +35,7 @@ ORDER BY avg(popularity) DESC
 LIMIT 5
 
 
-#Top 10 most popular tracks with their average duration, danceability, and energy.
+#2. Top 10 most popular tracks with their average duration, danceability, and energy.
 SELECT
     artist_name,
     track_name,
@@ -46,3 +46,20 @@ SELECT
 FROM BIT_DB.Spotifydata
 ORDER BY popularity DESC
 LIMIT 10
+
+
+#3. Creating a temporary table to view the most popular artists.
+WITH AvgPopularity AS (
+SELECT
+    spot.artist_name,
+    AVG(spot.popularity) AS Avg_Popularity
+FROM Spotifydata AS spot
+GROUP BY spot.artist_name
+)
+
+SELECT
+    artist_name,
+    Avg_Popularity,
+    'Top Star' AS tag
+FROM AvgPopularity
+WHERE Avg_Popularity >= 90;
