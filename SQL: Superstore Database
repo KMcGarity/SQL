@@ -28,17 +28,17 @@ VALUES
     (15, 'Cozy Throw Blanket', 'Furnishings', 24.99, 100, 4.2);
 
 
-#SELECT statement to order the items by price.
+#1. SELECT statement to order the items by price.
 SELECT *
 FROM superstore
 ORDER BY price;
 
-#The maximum price of any item at the store.
+#2. The maximum price of any item at the store.
 SELECT 
 	MAX(price)
 FROM superstore;
 
-#The average price of Kitchen Supplies at the store. 
+#3. The average price of Kitchen Supplies at the store. 
 SELECT
 	AVG(price),
     category
@@ -46,7 +46,7 @@ FROM superstore
 WHERE 
 	category = "Kitchen Supplies";
   
-#The average rating by item category at the store and ordered by the highest average rating.  
+#4. The average rating by item category at the store and ordered by the highest average rating.  
 SELECT 
 	ROUND(AVG(average_rating),2) AS Avg_CategoryRating,
     category
