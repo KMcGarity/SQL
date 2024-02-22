@@ -59,7 +59,7 @@ VALUES
     ('Company KK', 'Healthcare', 150.2, 3400, 0, 16, 8, 5.3);
 
 
-#All companies ordered by average employee tenure and seperated by tenure benchmarks.
+#1. All companies ordered by average employee tenure and seperated by tenure benchmarks.
 SELECT *,
 CASE WHEN avg_employee_tenure >=7 THEN "Average Tenure: 7+ Years"
 WHEN avg_employee_tenure >=6 THEN "Average Tenure: 6+ Years"
@@ -70,7 +70,7 @@ FROM fortune_companies
 ORDER BY avg_employee_tenure desc;
 
 
-#Industries with an average employee tenure greater than 6 years.
+#2. Industries with an average employee tenure greater than 6 years.
 SELECT 
 	industry,
     ROUND(AVG(avg_employee_tenure),2) AS Avg_Tenure
@@ -79,12 +79,12 @@ GROUP BY industry
 HAVING Avg_Tenure >=6
 ORDER BY Avg_Tenure desc;
 
-#Average days of paid time off across all companies.
+#3. Average days of paid time off across all companies.
 SELECT
     ROUND(AVG(paid_time_off_days),2) AS Avg_PTO_Days
 FROM fortune_companies;
 
-#List of companies that provide healthcare benefits and more than the average number of days of paid time off in industries with more than 6 years of employee tenure on average.
+#4. List of companies that provide healthcare benefits and more than the average number of days of paid time off in industries with more than 6 years of employee tenure on average.
 SELECT 
 	company_id,
     company_name,
