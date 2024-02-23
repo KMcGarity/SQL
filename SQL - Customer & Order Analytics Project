@@ -1,4 +1,4 @@
-#SQL Queries from a monthly sales database to analyze statistics about customers, products, and orders.
+#For this project I used SQL to query a monthly sales database to analyze statistics about customers, products, and orders.
 
 #1. Queries to view the columns in the customers and sales tables.
 SELECT *
